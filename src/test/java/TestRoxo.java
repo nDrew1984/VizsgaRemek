@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -150,5 +151,27 @@ public class TestRoxo {
         String exp2 = "Thanks! Contact form is submitted successfully.";
         String act2 = driver.findElement(By.id("contact-form-status")).getText();
         Assertions.assertEquals(exp2, act2);
+    }
+
+    @Test
+    public void ReadFromFileTest() throws IOException {
+        ReadFromFile read = new ReadFromFile(driver);
+
+        read.navigate();
+        read.clickAccept();
+        read.clickRegister();
+
+        read.inputRegLines();
+
+        read.clickRegisterButton();
+
+        String exp = "User registered!";
+        String act = driver.findElement(By.id("register-alert")).getText();
+        Assertions.assertEquals(exp, act);
+
+        read.clickLogin();
+        read.inputLoginLines();
+
+        read.clickLoginButton();
     }
 }

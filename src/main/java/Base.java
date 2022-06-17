@@ -24,10 +24,34 @@ public class Base {
     protected final By portfolio = By.xpath("//*[@id=\"sitenavbar\"]/ul/li[3]/a");
     protected final By getInTouch = By.xpath("//*[@class=\"navbar-nav ml-auto main-nav\"]/li[5]");
 
+    protected final By login = By.xpath("(//*[@id=\"login-form-button\"])[2]");
+    protected final By loginButton = By.xpath("//*[@id=\"login\"]/form/div[4]/button");
 
-    // tesztadatok a regisztrációhoz és a belépéshez:
-    protected final String userName = "nDrew";
-    protected final String password = "12345";
-    protected final String email = "boq93p@gmail.com";
-    protected final String description = "vizsgaremek";
+    public void navigate() {
+        driver.get(url);
+    }
+    public void clickAccept() {
+        driver.findElement(popupAccept).click();
+    }
+    public void clickX() {
+        driver.findElement(popupX).click();
+    }
+    public void inputReg(String username, String password, String email, String description) {
+        driver.findElement(regUserName).sendKeys(username);
+        driver.findElement(regPassword).sendKeys(password);
+        driver.findElement(regEmail).sendKeys(email);
+        driver.findElement(regDescription).sendKeys(description);
+    }
+    public void clickRegister() {
+        driver.findElement(register).click();
+    }
+    public void clickRegisterButton() {
+        driver.findElement(registerButton).click();
+    }
+    public void clickLogin() {
+        driver.findElement(login).click();
+    }
+    public void clickLoginButton() {
+        driver.findElement(loginButton).click();
+    }
 }
