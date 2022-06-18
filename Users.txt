@@ -1,0 +1,5 @@
+user1, 12345, boq93p@gmail.com, vizsgaremek1
+user2, 67891, boq93p@gmail.com, vizsgaremek2
+user3, 01112, boq93p@gmail.com, vizsgaremek3
+user4, 13141, boq93p@gmail.com, vizsgaremek4
+user5, 51617, boq93p@gmail.com, vizsgaremek5

@@ -178,9 +178,22 @@ public class TestRoxo {
         String exp2 = "https://lennertamas.github.io/roxo/landing.html";
         String act2 = driver.getCurrentUrl();
         Assertions.assertEquals(exp2, act2);
+    }
 
-        // "Get in touch"-ra kattintás és a form kitöltése file-ból  beolvasással:
-        read.clickGetInTouch();
+    @Test
+    public void RegUsersTest() throws IOException, InterruptedException {
+        RegUsers users = new RegUsers(driver);
 
+        users.navigate();
+        users.clickAccept();
+        users.clickRegister();
+
+        String file = "Users.txt";
+        users.regUsers(file);
+
+        // Az utolsó user regisztrációjának ellenőrzése:
+        String exp = "User registered!";
+        String act = driver.findElement(By.id("register-alert")).getText();
+        Assertions.assertEquals(exp, act);
     }
 }
