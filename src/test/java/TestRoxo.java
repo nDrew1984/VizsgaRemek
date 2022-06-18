@@ -157,21 +157,30 @@ public class TestRoxo {
     public void ReadFromFileTest() throws IOException {
         ReadFromFile read = new ReadFromFile(driver);
 
+        // weboldal megnyitása és regisztráció:
         read.navigate();
         read.clickAccept();
         read.clickRegister();
 
         read.inputRegLines();
-
         read.clickRegisterButton();
 
-        String exp = "User registered!";
-        String act = driver.findElement(By.id("register-alert")).getText();
-        Assertions.assertEquals(exp, act);
+        String exp1 = "User registered!";
+        String act1 = driver.findElement(By.id("register-alert")).getText();
+        Assertions.assertEquals(exp1, act1);
 
+        // Login:
         read.clickLogin();
         read.inputLoginLines();
 
         read.clickLoginButton();
+
+        String exp2 = "https://lennertamas.github.io/roxo/landing.html";
+        String act2 = driver.getCurrentUrl();
+        Assertions.assertEquals(exp2, act2);
+
+        // "Get in touch"-ra kattintás és a form kitöltése file-ból  beolvasással:
+        read.clickGetInTouch();
+
     }
 }

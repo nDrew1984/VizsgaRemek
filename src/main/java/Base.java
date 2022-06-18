@@ -23,6 +23,7 @@ public class Base {
     protected final By about = By.xpath("//*[@id=\"sitenavbar\"]/ul/li[2]/a");
     protected final By portfolio = By.xpath("//*[@id=\"sitenavbar\"]/ul/li[3]/a");
     protected final By getInTouch = By.xpath("//*[@class=\"navbar-nav ml-auto main-nav\"]/li[5]");
+    protected final By sendMessage = By.id("contact-form-button");
 
     protected final By login = By.xpath("(//*[@id=\"login-form-button\"])[2]");
     protected final By loginButton = By.xpath("//*[@id=\"login\"]/form/div[4]/button");
@@ -53,5 +54,14 @@ public class Base {
     }
     public void clickLoginButton() {
         driver.findElement(loginButton).click();
+    }
+    public void clickGetInTouch() {
+        driver.findElement(getInTouch).click();
+    }
+    public void clickSendMessage() {
+        driver.findElement(sendMessage).click();
+    }
+    public void clickAlertOK() {
+        driver.switchTo().alert().accept();
     }
 }
