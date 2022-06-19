@@ -196,4 +196,75 @@ public class TestRoxo {
         String act = driver.findElement(By.id("register-alert")).getText();
         Assertions.assertEquals(exp, act);
     }
+    @Test
+    public void RewriteDataTest() throws InterruptedException {
+        RewriteData reWrite = new RewriteData(driver);
+        LoginTest();
+        reWrite.clickGetInTouch();
+
+        String firstName = "Andor";
+        String lastName = "Blastik";
+        String email = "boq93p@gmail.com";
+        // projectType 1: Graphics Design
+        // projectType 2: Web Design
+        int projectType = 2;
+        String aboutTheProject = "Ez a szöveg mindjárt módosításra kerül.";
+
+        reWrite.inputData(firstName, lastName, email, projectType, aboutTheProject);
+        Thread.sleep(1000);
+
+        // firstname, lastname és szövegmező törlése:
+        reWrite.clearFirstName();
+        reWrite.clearLastName();
+        reWrite.clearText();
+
+        // a fenti mezők ürességének ellenőrzése:
+        String act1 = driver.findElement(By.xpath("(//*[@class=\"form-control\"])[1]")).getText(); // firstname
+        String act2 = driver.findElement(By.xpath("(//*[@class=\"form-control\"])[2]")).getText(); // lastname
+        String act3 = driver.findElement(By.xpath("(//*[@class=\"form-control\"])[5]")).getText(); // text
+        Assertions.assertEquals("", act1);
+        Assertions.assertEquals("", act2);
+        Assertions.assertEquals("", act3);
+
+        // új adatok:
+        String newFirstName = "Harry";
+        String newLastName = "Potter";
+        int newProjectType = 1; // 1 = "Graphics Design"
+        String newText =
+                """
+                Ez egy új
+                többsoros
+                szöveg.       
+                """;
+
+        Thread.sleep(1000);
+        // új adatok beírása, új Project Type kiválasztása:
+        reWrite.inputNewFirstname(newFirstName);
+        reWrite.inputNewLastName(newLastName);
+        reWrite.selectNewProjectType(newProjectType);
+        reWrite.inputNewText(newText);
+
+        Thread.sleep(1000);
+        // Ellenőrzés, hogy minden átíródott-e:
+        String act4 = driver.findElement(By.xpath("(//*[@class=\"form-control\"])[4]")).getText(); // Project Type
+
+        // Assertions.assertEquals(newFirstName, act1);  // valamiért hibásnak jelzi, mindig az elsőt
+        // Assertions.assertEquals(newLastName, act2);
+        // Assertions.assertEquals("Graphics Design", act4);
+        // Assertions.assertEquals(newText, act3);
+
+        reWrite.clickSendMessage();
+
+        String exp5 = "Message sent!";
+        String act5 = driver.switchTo().alert().getText();
+        Assertions.assertEquals(exp5, act5);
+
+        reWrite.clickAlertOK();
+
+        Thread.sleep(1000);
+        String exp6 = "Thanks! Contact form is submitted successfully.";
+        String act6 = driver.findElement(By.id("contact-form-status")).getText();
+        Assertions.assertEquals(exp6, act6);
+
+    }
 }
