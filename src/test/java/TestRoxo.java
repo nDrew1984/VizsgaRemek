@@ -23,7 +23,7 @@ public class TestRoxo {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-extensions");
-        // options.addArguments("--headless");
+        options.addArguments("--headless");
         options.addArguments("--window-size=1920,1080");
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
@@ -265,6 +265,19 @@ public class TestRoxo {
         String exp6 = "Thanks! Contact form is submitted successfully.";
         String act6 = driver.findElement(By.id("contact-form-status")).getText();
         Assertions.assertEquals(exp6, act6);
-
     }
+
+    @Test
+    public void SaveDataTest() throws IOException {
+        SaveData saveData = new SaveData(driver);
+        LoginTest();
+        saveData.clickAbout();
+        Assertions.assertEquals("https://lennertamas.github.io/roxo/about/", driver.getCurrentUrl());
+
+        String fileName = "saveData.txt";
+        saveData.createFile(fileName);
+
+        saveData.writeNameCards(fileName);
+    }
+
 }

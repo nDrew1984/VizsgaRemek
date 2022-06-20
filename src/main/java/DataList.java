@@ -16,10 +16,6 @@ public class DataList extends Base {
     private final By names = By.xpath("./h3");
     private final By titles = By.xpath("./p");
 
-    public void clickAbout() {
-        driver.findElement(about).click();
-    }
-
     public List<Map<String, String>> getData() {
         List<Map<String, String>> list = new ArrayList<>();
 

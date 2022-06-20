@@ -64,4 +64,7 @@ public class Base {
     public void clickAlertOK() {
         driver.switchTo().alert().accept();
     }
+    public void clickAbout() {
+        driver.findElement(about).click();
+    }
 }
