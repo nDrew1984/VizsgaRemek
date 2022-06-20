@@ -246,8 +246,8 @@ public class TestRoxo {
 
         Thread.sleep(1000);
         // Ellenőrzés, hogy minden átíródott-e:
-        String act4 = driver.findElement(By.xpath("(//*[@class=\"form-control\"])[4]")).getText(); // Project Type
 
+        // String act4 = driver.findElement(By.xpath("(//*[@class=\"form-control\"])[4]")).getText(); // Project Type
         // Assertions.assertEquals(newFirstName, act1);  // valamiért hibásnak jelzi, mindig az elsőt
         // Assertions.assertEquals(newLastName, act2);
         // Assertions.assertEquals("Graphics Design", act4);
