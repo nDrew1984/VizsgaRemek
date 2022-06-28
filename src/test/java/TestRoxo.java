@@ -34,8 +34,8 @@ public class TestRoxo {
     }
 
     @Test
-    @Description("description")
-    @DisplayName("test name")
+    @Description("Testing the Registration process.")
+    @DisplayName("Registration")
     public void RegisterTest() {
         Register register = new Register(driver);
 
@@ -58,6 +58,8 @@ public class TestRoxo {
     }
 
     @Test
+    @Description("Testing the Login process.")
+    @DisplayName("Login")
     public void LoginTest() {
         // Le kell futtatni újra a regisztrációt, mert ha bezárom a böngészőt, akkor elfelejti a regisztrált adatokat.
         // regisztráció után rögtön a Login fülre kell kattintani.
@@ -79,6 +81,8 @@ public class TestRoxo {
     }
 
     @Test
+    @Description("Testing the Logout process.")
+    @DisplayName("Logout")
     public void LogoutTest() throws InterruptedException {
         LoginTest();
         Logout logout = new Logout(driver);
@@ -93,12 +97,12 @@ public class TestRoxo {
     }
 
     @Test
+    @Description("Listing data from Namecards, and checking the list size.")
+    @DisplayName("Listing data")
     public void DataListTest() {
         DataList dataList = new DataList(driver);
         LoginTest();
         dataList.clickAbout();
-
-        Assertions.assertEquals("https://lennertamas.github.io/roxo/about/", driver.getCurrentUrl());
 
         List<Map<String, String>> list = dataList.getData();
         Assertions.assertEquals(6, list.size());
@@ -108,12 +112,12 @@ public class TestRoxo {
     }
 
     @Test
+    @Description("Paging through a list and counting the number of list-elements.")
+    @DisplayName("Getting through multi-pages list")
     public void PagingTest() {
         Paging paging = new Paging(driver);
         LoginTest();
         paging.clickPortfolio();
-
-        // Assertions.assertEquals("https://lennertamas.github.io/roxo/portfolio/", driver.getCurrentUrl());
 
         int act = 0;
         while (true) {
@@ -127,12 +131,12 @@ public class TestRoxo {
     }
 
     @Test
+    @Description("Checking input new data.")
+    @DisplayName("Input new data")
     public void InputNewDataTest() throws InterruptedException {
         InputNewData inputNewData = new InputNewData(driver);
         LoginTest();
         inputNewData.clickGetInTouch();
-
-        // Assertions.assertEquals("https://lennertamas.github.io/roxo/contact/", driver.getCurrentUrl());
 
         String firstName = "Andor";
         String lastName = "Blastik";
@@ -158,6 +162,8 @@ public class TestRoxo {
     }
 
     @Test
+    @Description("Registration and Login with user-data from file.")
+    @DisplayName("Read from file1")
     public void ReadFromFileTest() throws IOException {
         ReadFromFile read = new ReadFromFile(driver);
 
@@ -185,6 +191,8 @@ public class TestRoxo {
     }
 
     @Test
+    @Description("Registration of multiple user-data from file.")
+    @DisplayName("Register more users from file")
     public void RegUsersTest() throws IOException, InterruptedException {
         RegUsers users = new RegUsers(driver);
 
@@ -201,6 +209,8 @@ public class TestRoxo {
         Assertions.assertEquals(exp, act);
     }
     @Test
+    @Description("Checking that the entered data can be deleted and modified.")
+    @DisplayName("Modify and delete data")
     public void RewriteDataTest() throws InterruptedException {
         RewriteData reWrite = new RewriteData(driver);
         LoginTest();
@@ -240,8 +250,8 @@ public class TestRoxo {
                 többsoros
                 szöveg.       
                 """;
-
         Thread.sleep(1000);
+
         // új adatok beírása, új Project Type kiválasztása:
         reWrite.inputNewFirstname(newFirstName);
         reWrite.inputNewLastName(newLastName);
@@ -249,13 +259,6 @@ public class TestRoxo {
         reWrite.inputNewText(newText);
 
         Thread.sleep(1000);
-        // Ellenőrzés, hogy minden átíródott-e:
-
-        // String act4 = driver.findElement(By.xpath("(//*[@class=\"form-control\"])[4]")).getText(); // Project Type
-        // Assertions.assertEquals(newFirstName, act1);  // valamiért hibásnak jelzi, mindig az elsőt
-        // Assertions.assertEquals(newLastName, act2);
-        // Assertions.assertEquals("Graphics Design", act4);
-        // Assertions.assertEquals(newText, act3);
 
         reWrite.clickSendMessage();
 
@@ -276,7 +279,6 @@ public class TestRoxo {
         SaveData saveData = new SaveData(driver);
         LoginTest();
         saveData.clickAbout();
-        Assertions.assertEquals("https://lennertamas.github.io/roxo/about/", driver.getCurrentUrl());
 
         String fileName = "saveData.txt";
         saveData.createFile(fileName);

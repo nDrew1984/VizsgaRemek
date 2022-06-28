@@ -9,6 +9,7 @@ public class Paging extends Base {
         super(driver);
     }
 
+    private final By portfolio = By.xpath("//*[@id=\"sitenavbar\"]/ul/li[3]/a");
     private final By nextPage = By.xpath("//*[@class=\"pagination\"]/li[5]");
     private final By visibleItems = By.xpath("//*[@class=\"col-lg-6 col-md-10 mx-auto\"]");
 

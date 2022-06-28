@@ -11,6 +11,8 @@ public class SaveData extends Base {
     public SaveData(WebDriver driver) {
         super(driver);
     }
+
+    private final By about = By.xpath("//*[@id=\"sitenavbar\"]/ul/li[2]/a");
     private final By nameCards = By.xpath("//*[@class=\"site-team-member-content\"]");
     private final By names = By.xpath("./h3");
     private final By titles = By.xpath("./p");
@@ -18,6 +20,9 @@ public class SaveData extends Base {
     public void createFile(String s) throws IOException {
         File file = new File(s);
         file.createNewFile();
+    }
+    public void clickAbout() {
+        driver.findElement(about).click();
     }
     public void writeNameCards(String s) throws IOException {
         List<WebElement> nameCardsList = driver.findElements(nameCards);
