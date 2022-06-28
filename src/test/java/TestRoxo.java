@@ -275,6 +275,8 @@ public class TestRoxo {
     }
 
     @Test
+    @Description("Saving namecard data to txt file.")
+    @DisplayName("Save data to file")
     public void SaveDataTest() throws IOException {
         SaveData saveData = new SaveData(driver);
         LoginTest();
