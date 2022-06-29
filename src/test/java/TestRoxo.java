@@ -58,9 +58,28 @@ public class TestRoxo {
     }
 
     @Test
-    @Description("Testing the Login process.")
-    @DisplayName("Login")
-    public void LoginTest() {
+    @Description("Testing Login process with user-data registered before.")
+    @DisplayName("Login1")
+    public void LoginTest1() {
+        Login login = new Login(driver);
+
+        login.navigate();
+        login.clickAccept();
+
+        String userName = "nDrew";
+        String password = "12345";
+        login.inputLogin(userName, password);
+        login.clickLoginButton();
+
+        String exp = "https://lennertamas.github.io/roxo/landing.html";
+        String act = driver.getCurrentUrl();
+        Assertions.assertEquals(exp, act);
+    }
+    
+    @Test
+    @Description("Testing the Login process right after registration.")
+    @DisplayName("Login2")
+    public void LoginTest2() {
         // Le kell futtatni újra a regisztrációt, mert ha bezárom a böngészőt, akkor elfelejti a regisztrált adatokat.
         // regisztráció után rögtön a Login fülre kell kattintani.
         RegisterTest();
@@ -84,7 +103,7 @@ public class TestRoxo {
     @Description("Testing the Logout process.")
     @DisplayName("Logout")
     public void LogoutTest() throws InterruptedException {
-        LoginTest();
+        LoginTest2();
         Logout logout = new Logout(driver);
 
         Thread.sleep(2000);
@@ -101,7 +120,7 @@ public class TestRoxo {
     @DisplayName("Listing data")
     public void DataListTest() {
         DataList dataList = new DataList(driver);
-        LoginTest();
+        LoginTest2();
         dataList.clickAbout();
 
         List<Map<String, String>> list = dataList.getData();
@@ -116,7 +135,7 @@ public class TestRoxo {
     @DisplayName("Getting through multi-pages list")
     public void PagingTest() {
         Paging paging = new Paging(driver);
-        LoginTest();
+        LoginTest2();
         paging.clickPortfolio();
 
         int act = 0;
@@ -135,7 +154,7 @@ public class TestRoxo {
     @DisplayName("Input new data")
     public void InputNewDataTest() throws InterruptedException {
         InputNewData inputNewData = new InputNewData(driver);
-        LoginTest();
+        LoginTest2();
         inputNewData.clickGetInTouch();
 
         String firstName = "Andor";
@@ -213,7 +232,7 @@ public class TestRoxo {
     @DisplayName("Modify and delete data")
     public void RewriteDataTest() throws InterruptedException {
         RewriteData reWrite = new RewriteData(driver);
-        LoginTest();
+        LoginTest2();
         reWrite.clickGetInTouch();
 
         String firstName = "Andor";
@@ -248,7 +267,7 @@ public class TestRoxo {
                 """
                 Ez egy új
                 többsoros
-                szöveg.       
+                szöveg. 
                 """;
         Thread.sleep(1000);
 
@@ -277,9 +296,9 @@ public class TestRoxo {
     @Test
     @Description("Saving namecard data to txt file.")
     @DisplayName("Save data to file")
-    public void SaveDataTest() throws IOException {
+    public void SaveDataTest() throws IOException, InterruptedException {
         SaveData saveData = new SaveData(driver);
-        LoginTest();
+        LoginTest2();
         saveData.clickAbout();
 
         String fileName = "saveData.txt";

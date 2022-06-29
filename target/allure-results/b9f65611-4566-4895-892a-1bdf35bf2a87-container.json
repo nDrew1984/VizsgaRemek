@@ -1,0 +1,1 @@
+{"uuid":"b9f65611-4566-4895-892a-1bdf35bf2a87","name":"Read from file1","children":["1019de1b-ff89-4bfa-a128-d6fa2de05d61"],"befores":[{"name":"setup","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1656448710330,"stop":1656448713963}],"afters":[],"links":[],"start":1656448710321,"stop":1656448716937}

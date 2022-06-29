@@ -7,8 +7,8 @@ public class Base {
         this.driver = driver;
     }
 
-    // Webelemek:
     protected final String url = "https://lennertamas.github.io/roxo/";
+
     public void navigate() {
         driver.get(url);
     }
