@@ -75,7 +75,7 @@ public class TestRoxo {
         String act = driver.getCurrentUrl();
         Assertions.assertEquals(exp, act);
     }
-    
+
     @Test
     @Description("Testing the Login process right after registration.")
     @DisplayName("Login2")
@@ -296,7 +296,7 @@ public class TestRoxo {
     @Test
     @Description("Saving namecard data to txt file.")
     @DisplayName("Save data to file")
-    public void SaveDataTest() throws IOException, InterruptedException {
+    public void SaveDataTest() throws IOException {
         SaveData saveData = new SaveData(driver);
         LoginTest2();
         saveData.clickAbout();
