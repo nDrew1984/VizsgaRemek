@@ -1,7 +1,9 @@
 # VizsgaRemek
 Készült a Codecool Junior Automata Tesztelői kurzuson, záróvizsga részeként. \
 Automata tesztek a https://lennertamas.github.io/roxo weboldal különböző funkcióihoz. \
-A weboldalt Chrome böngészőben futtattam.
+A weboldalt Chrome böngészőben futtattam. \
+A kód futtatásához intelliJ vagy valamilyen hasonló JAVA kód futtatására alkalmas eszköz szükséges. \
+A beállításokat a pom.xml file tartalmazza.
 
 A tesztelt funkciók:
 1. Regisztráció
