@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import jdk.jfr.Description;
+import io.qameta.allure.Description;
+//import jdk.jfr.Description;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
